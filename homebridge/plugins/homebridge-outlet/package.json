@@ -1,0 +1,16 @@
+{
+  "name": "homebridge-outlet",
+  "version": "0.0.1",
+  "description": "Custom RPi Outlet plugin for homebridge: https://github.com/nfarina/homebridge",
+  "license": "",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  },
+  "dependencies": {
+    "rpi-gpio": "^0.7.0"
+  }
+}
