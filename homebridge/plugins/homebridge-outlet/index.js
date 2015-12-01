@@ -25,7 +25,7 @@ function SwitchAccessory(log, config) {
   
   // Setup pin that controlles switch
   // turnOff is the callback function
-  gpio.setup(this.pin, gpio.DIR_OUT, turnOff);
+  gpio.setup(this.pin, gpio.DIR_OUT, this.turnOff);
 
   var informationService = new Service.AccessoryInformation();
 
@@ -60,15 +60,24 @@ function SwitchAccessory(log, config) {
 }
 
 SwitchAccessory.prototype.turnOn = function(){
-  write(false);
+  // this.write(false);
+  gpio.setup(this.pin, gpio.DIR_OUT);
+  gpio.write(this.pin, false, function(err) {
+      if (err) throw err;
+      console.log('Written to pin');
+  });
 };
 
 SwitchAccessory.prototype.turnOff = function(){
-  write(true);
+  // this.write(true);
+  gpio.write(this.pin, true, function(err) {
+      if (err) throw err;
+      console.log('Written to pin');
+  });
 };
 
 SwitchAccessory.prototype.write = function(value){
-  gpio.write(self.pin, value, function(err) {
+  gpio.write(this.pin, value, function(err) {
       if (err) throw err;
       console.log('Written to pin');
   });
