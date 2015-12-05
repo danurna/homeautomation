@@ -1,9 +1,9 @@
 {
     "bridge": {
-        "name": "Home",
-        "username": "1A:22:31:EF:CA:30",
+        "name": "The Hood",
+        "username": "1A:23:31:EF:CA:30",
         "port": 51826,
-        "pin": "XXX-YY-ZZZ"
+        "pin": "111-22-333"
     },
 
     "description": "This is an example configuration file with one fake accessory and one fake platform. You can use this as a template for creating your own configuration file containing devices you actually own.",
@@ -12,8 +12,14 @@
         {
             "accessory": "TemperatureFile",
             "name": "Temperature-sensor",
-	        "description": "The temperature in the ...",
+	    "description": "The temperature in the ...",
             "file_path": "/home/pi/homaut/dht/tmp"
-        }
+        },
+	{  
+	    "accessory": "Outlet",
+	    "name": "Lampe",
+	    "description": "Switch outlet control",
+	    "pin": "24" 
+	}
     ]
 }

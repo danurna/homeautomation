@@ -25,7 +25,7 @@ function SwitchAccessory(log, config) {
   
   // Setup pin that controlles switch
   // turnOff is the callback function
-  gpio.setup(this.pin, gpio.DIR_OUT, this.turnOff);
+  gpio.setup(this.pin, gpio.DIR_OUT);
 
   var informationService = new Service.AccessoryInformation();
 
@@ -41,8 +41,8 @@ function SwitchAccessory(log, config) {
   switchService
   .getCharacteristic(Characteristic.On)
   .on('set', function(value, callback) {
-    state = value;
-    if (state) {
+    self.state = value;
+    if (self.state) {
       self.turnOn();
     } else {
       self.turnOff();
@@ -53,7 +53,7 @@ function SwitchAccessory(log, config) {
   switchService
   .getCharacteristic(Characteristic.On)
   .on('get', function(callback){
-    callback(null, state);
+    callback(null, self.state);
   });
 
   this.services = [ informationService, switchService ];
@@ -61,7 +61,7 @@ function SwitchAccessory(log, config) {
 
 SwitchAccessory.prototype.turnOn = function(){
   // this.write(false);
-  gpio.setup(this.pin, gpio.DIR_OUT);
+  //gpio.setup(this.pin, gpio.DIR_OUT);
   gpio.write(this.pin, false, function(err) {
       if (err) throw err;
       console.log('Written to pin');
